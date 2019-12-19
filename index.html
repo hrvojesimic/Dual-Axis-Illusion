@@ -13,9 +13,13 @@ GitHub Corner is Copyright (c) 2016 Tim Holman - http://tholman.com
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <style>
+  body > * {
+    text-align: center;
+  }
   #Controls {
     display: flex;
     flex-direction: row;
+    justify-content: center;
   }
   @media screen and (max-width: 400px) {
     #Controls {
@@ -31,20 +35,25 @@ GitHub Corner is Copyright (c) 2016 Tim Holman - http://tholman.com
     background: none;
     cursor: pointer;
   }
-  #c {
+
+  #Canvas {
     width: 100%;
     height: 75%;
   }
 </style>
 <body>
+
 <h1>
   Dual Axis Rotation Illusion
   <br>by Frank Force
 </h1>
-<p>Which way does this loop rotate?</p>
-<section id="Canvas">
-  <canvas id=c></canvas>
+
+<p>Which way does this loop rotate? Switching on some lasers below might change your mind...</p>
+
+<section>
+  <canvas id="Canvas"></canvas>
 </section>
+
 <section id="Controls">
   <button onclick="spinAxis = 'horizontal'">Show horizontal laser</button>
   <button onclick="spinAxis = 'vertical'">Show vertical laser</button>
@@ -52,11 +61,13 @@ GitHub Corner is Copyright (c) 2016 Tim Holman - http://tholman.com
   <br>
   <button onclick="spinDirection = -1 * spinDirection">Change direction</button>
 </section>
-<p>Adapted by Hrvoje Šimić</p>
+
+<p>Improved usability by Hrvoje Šimić</p>
 
 <script>
 "use strict";
 
+const c = document.getElementById("Canvas");
 const x = c.getContext('2d');
 const PI = Math.PI;
 const S = Math.sin;
@@ -88,11 +99,6 @@ function DrawCurvePoint(pos, color, radius=30, stroke=0)
 
 function Update()
 {
-    // get settings
-    //let spinAxis = document.querySelector('input[name="radio_spinAxis"]:checked').value;
-    //let spinDirection = parseFloat(document.querySelector('input[name="radio_spinDirection"]:checked').value);
-    //let showDots = checkbox_circleOverlaps.checked;
-
     // clear canvas
     c.width += 0;
     x.lineWidth = 10;

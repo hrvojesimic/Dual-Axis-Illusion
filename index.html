@@ -38,7 +38,6 @@ GitHub Corner is Copyright (c) 2016 Tim Holman - http://tholman.com
 
   #Canvas {
     width: 100%;
-    height: 75%;
   }
 </style>
 <body>
@@ -73,20 +72,22 @@ const PI = Math.PI;
 const S = Math.sin;
 const BAR_SIZE = 16;
 
-c.width = document.body.clientWidth*1.1;
-c.height = c.width * 0.45;
+c.width = document.body.clientWidth;
+c.height = c.width * 0.5;
 
 const xCenter = c.width/2;
 const yCenter = c.height/2;
-const width = 400;
-const height = 300;
+const width = c.width/3;
+const height = c.height/3;
+const R = c.width/50;
+const LW = c.width/125;
 let t = 0;
 
 let spinAxis = '';
 let spinDirection = 1;
 let showDots = false;
 
-function DrawCurvePoint(pos, color, radius=30, stroke=0)
+function DrawCurvePoint(pos, color, radius=R, stroke=0)
 {
     let X = width*S(pos/3);
     let Y = height*S(t+pos/2);
@@ -118,7 +119,7 @@ function Update()
             for(let i=-BAR_SIZE; i<=BAR_SIZE; ++i)
             {
                 x.globalAlpha = 2-2*Math.abs(i)/BAR_SIZE;
-                x.fillRect(0, yCenter+i*8, 2e3, 8);
+                x.fillRect(0, yCenter+i*LW, 2e3, LW);
             }
             x.globalAlpha = 1;
 
@@ -136,7 +137,7 @@ function Update()
             for(let i=-BAR_SIZE; i<=BAR_SIZE; ++i)
             {
                 x.globalAlpha = 2-2*Math.abs(i)/BAR_SIZE;
-                x.fillRect(xCenter+i*12, 0, 12, 2e3);
+                x.fillRect(xCenter+i*LW*2, 0, LW*2, 2e3);
             }
             x.globalAlpha = 1;
             
